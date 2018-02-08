@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return getenv("APP_ENV");
 });
 
 $router->post('/', function (\Illuminate\Http\Request $request) use ($router) {

@@ -1,1 +1,1 @@
-# dilly-dilly-bot
+# Plan Poker Bot
