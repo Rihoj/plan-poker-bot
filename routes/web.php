@@ -38,28 +38,54 @@ $router->post('/', function (\Illuminate\Http\Request $request) use ($router) {
                 ]
             ]
         ];
-        $buttons = ["buttons"=>[$button1]];
+        $button2 = [
+            "textButton"=>[
+                "text"=>"2",
+                "onClick"=>[
+                    "action"=>[
+                        "actionMethodName"=>"vote",
+                        "parameters"=>[
+                            ["key"=> "topic", "value"=>$event['message']['text']],
+                            ["key"=> "value", "value"=>"2"]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $button3 = [
+            "textButton"=>[
+                "text"=>"3",
+                "onClick"=>[
+                    "action"=>[
+                        "actionMethodName"=>"vote",
+                        "parameters"=>[
+                            ["key"=> "topic", "value"=>$event['message']['text']],
+                            ["key"=> "value", "value"=>"3"]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $button4 = [
+            "textButton"=>[
+                "text"=>"5",
+                "onClick"=>[
+                    "action"=>[
+                        "actionMethodName"=>"vote",
+                        "parameters"=>[
+                            ["key"=> "topic", "value"=>$event['message']['text']],
+                            ["key"=> "value", "value"=>"5"]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $buttons = ["buttons"=>[$button1, $button2, $button3, $button4]];
         $widgets = ["widgets"=>[$buttons]];
         $section = ["sections"=>[$widgets]];
         $cards = ["cards"=>[$header, $section]];
         return $cards;
     } elseif ($event["type"] == "CARD_CLICKED") {
         return ["text"=>"Clicked"];
-    }
-});
-
-$router->post('/vote', function (\Illuminate\Http\Request $request) use ($router) {
-    $event = $request->json()->all();
-    if ($event["type"] === "CARD_CLICKED") {
-//        $header = ["header"=>[
-//          "title" => "Plan Poker",
-//          "subtitle" => $event['message']['text']
-//        ]];
-//        $button1 = ["textButton"=>["text"=>"1", "onClick"=>["action"=>["actionMethodName"=>"vote", "parameters"=>[["key"=> "topic", "value"=>$event['messasge']['text']],["key"=> "topic", "value"=>"1"]]]]]];
-//        $buttons = ["buttons"=>[$button1]];
-//        $widgets = ["widgets"=>[$buttons]];
-//        $section = ["sections"=>[$widgets]];
-//        $cards = ["cards"=>[$header, $section]];
-        return ["text"=>"vote"];
     }
 });
