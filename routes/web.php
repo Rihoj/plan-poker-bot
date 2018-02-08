@@ -43,12 +43,14 @@ $router->post('/', function (\Illuminate\Http\Request $request) use ($router) {
         $section = ["sections"=>[$widgets]];
         $cards = ["cards"=>[$header, $section]];
         return $cards;
+    } elseif ($event["type"] == "CARD_CLICKED") {
+        return ["text"=>"Clicked"];
     }
 });
 
 $router->post('/vote', function (\Illuminate\Http\Request $request) use ($router) {
     $event = $request->json()->all();
-    if ($event["type"] === "MESSAGE") {
+    if ($event["type"] === "CARD_CLICKED") {
 //        $header = ["header"=>[
 //          "title" => "Plan Poker",
 //          "subtitle" => $event['message']['text']
@@ -58,6 +60,6 @@ $router->post('/vote', function (\Illuminate\Http\Request $request) use ($router
 //        $widgets = ["widgets"=>[$buttons]];
 //        $section = ["sections"=>[$widgets]];
 //        $cards = ["cards"=>[$header, $section]];
-        return $event;
+        return ["text"=>"vote"];
     }
 });
