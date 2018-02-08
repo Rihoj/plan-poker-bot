@@ -24,7 +24,20 @@ $router->post('/', function (\Illuminate\Http\Request $request) use ($router) {
           "title" => "Plan Poker",
           "subtitle" => $event['message']['text']
         ]];
-        $button1 = ["textButton"=>["text"=>"1", "onClick"=>["action"=>["actionMethodName"=>"vote", "parameters"=>[["key"=> "topic", "value"=>$event['messasge']['text']],["key"=> "topic", "value"=>"1"]]]]]];
+        $button1 = [
+            "textButton"=>[
+                "text"=>"1",
+                "onClick"=>[
+                    "action"=>[
+                        "actionMethodName"=>"vote",
+                        "parameters"=>[
+                            ["key"=> "topic", "value"=>$event['message']['text']],
+                            ["key"=> "value", "value"=>"1"]
+                        ]
+                    ]
+                ]
+            ]
+        ];
         $buttons = ["buttons"=>[$button1]];
         $widgets = ["widgets"=>[$buttons]];
         $section = ["sections"=>[$widgets]];
@@ -32,19 +45,19 @@ $router->post('/', function (\Illuminate\Http\Request $request) use ($router) {
         return $cards;
     }
 });
-//
-//$router->post('/vote', function (\Illuminate\Http\Request $request) use ($router) {
-//    $event = $request->json()->all();
-//    if ($event["type"] === "MESSAGE") {
-////        $header = ["header"=>[
-////          "title" => "Plan Poker",
-////          "subtitle" => $event['message']['text']
-////        ]];
-////        $button1 = ["textButton"=>["text"=>"1", "onClick"=>["action"=>["actionMethodName"=>"vote", "parameters"=>[["key"=> "topic", "value"=>$event['messasge']['text']],["key"=> "topic", "value"=>"1"]]]]]];
-////        $buttons = ["buttons"=>[$button1]];
-////        $widgets = ["widgets"=>[$buttons]];
-////        $section = ["sections"=>[$widgets]];
-////        $cards = ["cards"=>[$header, $section]];
-//        return $event;
-//    }
-//});
+
+$router->post('/vote', function (\Illuminate\Http\Request $request) use ($router) {
+    $event = $request->json()->all();
+    if ($event["type"] === "MESSAGE") {
+//        $header = ["header"=>[
+//          "title" => "Plan Poker",
+//          "subtitle" => $event['message']['text']
+//        ]];
+//        $button1 = ["textButton"=>["text"=>"1", "onClick"=>["action"=>["actionMethodName"=>"vote", "parameters"=>[["key"=> "topic", "value"=>$event['messasge']['text']],["key"=> "topic", "value"=>"1"]]]]]];
+//        $buttons = ["buttons"=>[$button1]];
+//        $widgets = ["widgets"=>[$buttons]];
+//        $section = ["sections"=>[$widgets]];
+//        $cards = ["cards"=>[$header, $section]];
+        return $event;
+    }
+});
