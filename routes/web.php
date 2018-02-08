@@ -80,7 +80,35 @@ $router->post('/', function (\Illuminate\Http\Request $request) use ($router) {
                 ]
             ]
         ];
-        $buttons = ["buttons"=>[$button1, $button2, $button3, $button4]];
+        $button5 = [
+            "textButton"=>[
+                "text"=>"8",
+                "onClick"=>[
+                    "action"=>[
+                        "actionMethodName"=>"vote",
+                        "parameters"=>[
+                            ["key"=> "topic", "value"=>$event['message']['text']],
+                            ["key"=> "value", "value"=>"8"]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $button6 = [
+            "textButton"=>[
+                "text"=>"13",
+                "onClick"=>[
+                    "action"=>[
+                        "actionMethodName"=>"vote",
+                        "parameters"=>[
+                            ["key"=> "topic", "value"=>$event['message']['text']],
+                            ["key"=> "value", "value"=>"13"]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $buttons = ["buttons"=>[$button1, $button2, $button3, $button4, $button5, $button6]];
         $widgets = ["widgets"=>[$buttons]];
         $section = ["sections"=>[$widgets]];
         $cards = ["cards"=>[$header, $section]];
