@@ -67,9 +67,10 @@ class PlanPokerController
         foreach ($parameters as $value) {
             $parameter[$value['key']] = $value['value'];
         }
-        $buttons = $this->createButtons($parameter['value']);
+        $buttons = $this->createButtons($parameter['id']);
         $section->widgets[] = new Widget($buttons);
-        $this->response->cards[] = new Header("Plan Poker", $parameter['value']);
+        $this->response->cards[] = new Header("Plan Poker", $parameter['id']);
+        $this->response->cards[] = new Header("votes", $user);
         $this->response->cards[] = $card;
         
         return ["actionResponse"=>$actionResponse, "cards"=> $this->response->cards];
