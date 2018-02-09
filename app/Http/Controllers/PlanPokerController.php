@@ -52,4 +52,22 @@ class PlanPokerController
         $button->onClick = $action;
         return $button;
     }
+    
+    public function vote($event)
+    {
+        $user = $event['user']['displayName'];
+        $parameters = $event['action']['parameters'];
+        $actionResponse = new \stdClass;
+        $actionResponse->type = "UPDATE_MESSAGE";
+        $this->response = new Response;
+        $card = new Card();
+        $section = new Section();
+        $card->setSection($section);
+        $buttons = $this->createButtons($event['message']['text']);
+        $section->widgets[] = new Widget($buttons);
+        $this->response->cards[] = new Header("Plan Poker", $event['message']['text']);
+        $this->response->cards[] = $card;
+        
+        return ["actionResponse"=>$actionResponse, "cards"=> $this->response->cards];
+    }
 }
