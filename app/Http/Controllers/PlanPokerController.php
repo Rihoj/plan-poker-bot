@@ -58,7 +58,7 @@ class PlanPokerController
 //        error_log(print_r($event, 1));
         $user = $event['user']['displayName'];
         $parameters = $event['action']['parameters'];
-        $voters = isset($event['message']['cards'][2]) ? $event['message']['cards'][2] : null;
+        $voters = isset($event['message']['cards'][2]['header']) ? $event['message']['cards'][2]['header'] : null;
         $actionResponse = new \stdClass;
         $actionResponse->type = "UPDATE_MESSAGE";
         $this->response = new Response;
