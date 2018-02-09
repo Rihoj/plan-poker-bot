@@ -13,7 +13,7 @@ namespace App\Http\Classes;
  *
  * @author james
  */
-class Header
+class Header implements \JsonSerializable
 {
     public $title;
     public $subtitle;
@@ -21,5 +21,12 @@ class Header
     {
         $this->title = $title;
         $this->subtitle = $subtitle;
+    }
+    
+    public function jsonSerialize()
+    {
+        return [
+            'header' => ["title" => $this->title, "subtitle"=> $this->subtitle]
+        ];
     }
 }

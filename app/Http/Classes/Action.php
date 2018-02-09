@@ -2,7 +2,7 @@
 
 namespace App\Http\Classes;
 
-class Action
+class Action implements \JsonSerializable
 {
     public $actionMethodName;
     
@@ -36,5 +36,9 @@ class Action
     public function addParemeter(Parameter $parameter)
     {
         $this->parameters[] = $parameter;
+    }
+    public function jsonSerialize()
+    {
+        return ["action"=>["actionMethodName"=> $this->actionMethodName, "parameters"=> $this->parameters]];
     }
 }

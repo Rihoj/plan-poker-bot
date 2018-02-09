@@ -23,6 +23,7 @@ class PlanPokerController
         $card->setSection($section);
         $buttons = $this->createButtons($event['message']['text']);
         $section->widgets[] = new Widget($buttons);
+        $this->response->cards[] = new Header("Plan Poker", $event['message']['text']);
         $this->response->cards[] = $card;
         return (array) $this->response;
     }
@@ -45,8 +46,8 @@ class PlanPokerController
         $action = new Action("vote");
         $parameterValue = new Parameter("value", $value);
         $parameterId = new Parameter("id", $id);
-        $action->addParemeter($parameterValue);
         $action->addParemeter($parameterId);
+        $action->addParemeter($parameterValue);
         $button = new TextButton($value);
         $button->onClick = $action;
         return $button;
