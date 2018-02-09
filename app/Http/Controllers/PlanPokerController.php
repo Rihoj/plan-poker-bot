@@ -55,6 +55,7 @@ class PlanPokerController
     
     public function vote($event)
     {
+        error_log(print_r($event));
         $user = $event['user']['displayName'];
         $parameters = $event['action']['parameters'];
         $actionResponse = new \stdClass;
@@ -70,8 +71,8 @@ class PlanPokerController
         $buttons = $this->createButtons($parameter['id']);
         $section->widgets[] = new Widget($buttons);
         $this->response->cards[] = new Header("Plan Poker", $parameter['id']);
-        $this->response->cards[] = new Header("votes", $user);
         $this->response->cards[] = $card;
+        $this->response->cards[] = new Header("Voters", $user);
         
         return ["actionResponse"=>$actionResponse, "cards"=> $this->response->cards];
     }
