@@ -15,8 +15,14 @@ namespace App\Http\Classes;
  */
 class Header implements \JsonSerializable
 {
-    public $title;
-    public $subtitle;
+    const SQUARE = "IMAGE";
+    const CIRCLE = "AVATAR";
+
+    private $title;
+    private $subtitle;
+    private $imageUrl;
+    private $imageStyle;
+    
     public function __construct($title, $subtitle)
     {
         $this->title = $title;

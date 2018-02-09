@@ -2,9 +2,9 @@
 
 namespace App\Http\Classes;
 
-class Card
+class Card implements \JsonSerializable
 {
-    public $sections = [];
+    private $sections = [];
     
     public function getSections()
     {
@@ -14,5 +14,10 @@ class Card
     public function setSection($section)
     {
         $this->sections[] = $section;
+    }
+    
+    public function jsonSerialize()
+    {
+        return ["sections"=> $this->getSections()];
     }
 }
