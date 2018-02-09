@@ -63,9 +63,13 @@ class PlanPokerController
         $card = new Card();
         $section = new Section();
         $card->setSection($section);
-        $buttons = $this->createButtons($event['message']['text']);
+        $parameter = [];
+        foreach ($parameters as $value) {
+            $parameter[$value['key']] = $value['value'];
+        }
+        $buttons = $this->createButtons($parameter['value']);
         $section->widgets[] = new Widget($buttons);
-        $this->response->cards[] = new Header("Plan Poker", $event['message']['text']);
+        $this->response->cards[] = new Header("Plan Poker", $parameter['value']);
         $this->response->cards[] = $card;
         
         return ["actionResponse"=>$actionResponse, "cards"=> $this->response->cards];

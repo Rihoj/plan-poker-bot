@@ -16,3 +16,4 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('/', "AppController@app");
+$router->post('/vote', "AppController@app");

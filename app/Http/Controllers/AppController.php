@@ -24,7 +24,9 @@ class AppController extends Controller
     public function app(Request $request)
     {
         $event = $request->json()->all();
-        if ($event["type"] === "ADDED_TO_SPACE" && $event['space']['type'] == 'ROOM') {
+        if ($event["type"] === "ADDED_TO_SPACE"
+                && isset($event['space']['type'])
+                && $event['space']['type'] == 'ROOM') {
             return ["text" => "Thanks for adding me!"];
         } elseif ($event["type"] === "MESSAGE") {
             return $this->planPokerController->start($event);
