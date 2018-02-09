@@ -20,7 +20,7 @@ class AppController extends Controller
             return ["text" => "Thanks for adding me!"];
         } elseif ($event["type"] === "MESSAGE") {
             $response = new PlanPokerController();
-            return ["text"=>$response->start($event)];
+            return $response->start($event);
         } elseif ($event["type"] == "CARD_CLICKED") {
             return ["text"=>"Clicked"];
         }

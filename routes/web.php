@@ -15,5 +15,5 @@ $router->get('/', function () use ($router) {
     return getenv("APP_ENV");
 });
 
-$router->post('/', 'PlanPokerController@start');
+$router->post('/', 'AppController@app');
 $router->post('/test', 'PlanPokerController@test');

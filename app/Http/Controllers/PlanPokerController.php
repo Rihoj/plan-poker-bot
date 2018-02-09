@@ -4,23 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Classes\Action;
 use App\Http\Classes\Card;
+use App\Http\Classes\Header;
 use App\Http\Classes\Parameter;
 use App\Http\Classes\Response;
 use App\Http\Classes\Section;
-use App\Http\Classes\Sender;
 use App\Http\Classes\TextButton;
 use App\Http\Classes\Widget;
-use Illuminate\Http\Request;
 
 class PlanPokerController
 {
     public $response;
     
-    public function start(Request $request)
+    public function start($event)
     {
-        $event = $request->json()->all();
         $this->response = new Response;
-        $this->response->header = new \App\Http\Classes\Header("Plan Poker Bot", $event['message']['text']);
+        $this->response->header = new Header("Plan Poker Bot", $event['message']['text']);
         $card = new Card();
         $section = new Section();
         $card->setSection($section);
