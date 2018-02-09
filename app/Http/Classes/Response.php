@@ -4,7 +4,7 @@ namespace App\Http\Classes;
 
 class Response
 {
-    public $header;
+//    public $header;
     
     public $cards = [];
 }

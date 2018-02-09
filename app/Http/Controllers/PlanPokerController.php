@@ -18,7 +18,6 @@ class PlanPokerController
     public function start($event)
     {
         $this->response = new Response;
-        $this->response->header = new Header("Plan Poker Bot", $event['message']['text']);
         $card = new Card();
         $section = new Section();
         $card->setSection($section);
