@@ -50,7 +50,7 @@ class PlanPokerController
         $parameterId = new Parameter("id", $id);
         $action->addParemeter($parameterValue);
         $action->addParemeter($parameterId);
-        $button = new TextButton($id);
+        $button = new TextButton($value);
         $button->onClick = $action;
         return $button;
     }
