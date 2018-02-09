@@ -20,7 +20,7 @@ class PlanPokerController
     {
         $event = $request->json()->all();
         $this->response = new Response;
-//        $this->response->sender = new Sender();
+        $this->response->header = new \App\Http\Classes\Header("Plan Poker Bot", $event['message']['text']);
         $card = new Card();
         $section = new Section();
         $card->setSection($section);
