@@ -55,7 +55,7 @@ class PlanPokerController
     
     public function vote($event)
     {
-        error_log(print_r($event));
+        error_log(print_r($event, 1));
         $user = $event['user']['displayName'];
         $parameters = $event['action']['parameters'];
         $actionResponse = new \stdClass;
