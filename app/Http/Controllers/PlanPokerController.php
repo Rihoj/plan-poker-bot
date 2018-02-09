@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Classes\Action;
+use App\Http\Classes\Card;
 use App\Http\Classes\Parameter;
 use App\Http\Classes\Response;
 use App\Http\Classes\Section;
@@ -15,11 +16,12 @@ class PlanPokerController
 {
     public $response;
     
-    public function start($event)
+    public function start(Request $request)
     {
+        $event = $request->json()->all();
         $this->response = new Response;
-        $this->response->sender = new Sender();
-        $card = new \App\Http\Classes\Card();
+//        $this->response->sender = new Sender();
+        $card = new Card();
         $section = new Section();
         $card->setSection($section);
         $buttons = $this->createButtons($event['message']['text']);
