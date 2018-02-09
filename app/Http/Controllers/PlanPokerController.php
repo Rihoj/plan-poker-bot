@@ -56,9 +56,16 @@ class PlanPokerController
     public function vote($event)
     {
 //        error_log(print_r($event, 1));
+        $voters = [];
         $user = $event['user']['displayName'];
         $parameters = $event['action']['parameters'];
-        $voters = isset($event['message']['cards'][2]['header']) ? $event['message']['cards'][2]['header'] : null;
+        $votersHeader = isset($event['message']['cards'][2]['header']) ? $event['message']['cards'][2]['header'] : null;
+        if ($votersHeader !== null) {
+            $voters = explode(", ", $votersHeader['subtitle']);
+            if (in_array($user, $voters)) {
+                exit;
+            }
+        }
         $actionResponse = new \stdClass;
         $actionResponse->type = "UPDATE_MESSAGE";
         $this->response = new Response;
@@ -73,7 +80,7 @@ class PlanPokerController
         $section->widgets[] = new Widget($buttons);
         $this->response->cards[] = new Header("Plan Poker", $parameter['id']);
         $this->response->cards[] = $card;
-        $users = ($voters !== null) ? $voters['subtitle'].", ".$user : $user;
+        $users = ($votersHeader !== null) ? $votersHeader['subtitle'].", ".$user : $user;
         $this->response->cards[] = new Header("Voters", $users);
         
         return ["actionResponse"=>$actionResponse, "cards"=> $this->response->cards];
