@@ -23,11 +23,14 @@ class Header implements \JsonSerializable
     private $imageUrl;
     private $imageStyle;
     
-    public function __construct($title, $subtitle)
+    public function __construct($title, $subtitle, $imageUrl, $imageStyle)
     {
         $this->title = $title;
         $this->subtitle = $subtitle;
+        $this->imageUrl = $imageUrl;
+        $this->imageStyle = $imageStyle;
     }
+
     
     public function jsonSerialize()
     {
