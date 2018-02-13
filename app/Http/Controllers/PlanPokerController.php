@@ -23,7 +23,7 @@ class PlanPokerController
         $card->setSection($section);
         $buttons = $this->createButtons($event['message']['text']);
         $section->widgets[] = new Widget($buttons);
-        $this->response->cards[] = new Header("Plan Poker", $event['message']['text']);
+        $this->response->cards[] = new Header("Plan Poker", $event['message']['text'], getenv("APP_IMAGE"), getenv("APP_IMAGE_STYLE"));
         $this->response->cards[] = $card;
         return (array) $this->response;
     }
