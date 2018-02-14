@@ -55,7 +55,7 @@ class PlanPokerController
     
     public function vote($event)
     {
-//        error_log(print_r($event, 1));
+        error_log(print_r($event, 1));
         $voters = [];
         $user = $event['user']['displayName'];
         $parameters = $event['action']['parameters'];
