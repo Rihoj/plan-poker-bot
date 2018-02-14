@@ -35,7 +35,7 @@ class Header implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'header' => ["imageUrl"=>$this->imageUrl, "imagegStyle"=> $this->imageStyle ,"title" => $this->title, "subtitle"=> $this->subtitle]
+            'header' => ["imageUrl"=>$this->imageUrl, "imageStyle"=> $this->imageStyle ,"title" => $this->title, "subtitle"=> $this->subtitle]
         ];
     }
 }
