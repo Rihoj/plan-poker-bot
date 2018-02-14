@@ -75,7 +75,7 @@ class PlanPokerController
         }
         $buttons = $this->createButtons($parameter['id']);
         $section->widgets[] = new Widget($buttons);
-        $this->response->cards[] = new Header("Plan Poker", $parameter['id']);
+        $this->response->cards[] = new Header("Plan Poker", $parameter['id'], getenv("APP_IMAGE"), getenv("APP_IMAGE_STYLE"));
         $this->response->cards[] = $card;
         if (!in_array($user, $voters)) {
             $voters[] = $user;
