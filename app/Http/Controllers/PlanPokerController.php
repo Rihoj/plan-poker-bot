@@ -55,7 +55,6 @@ class PlanPokerController
     
     public function vote($event)
     {
-        error_log(print_r($event, 1));
         $voters = [];
         $user = $event['user']['displayName'];
         $parameters = $event['action']['parameters'];
@@ -80,7 +79,21 @@ class PlanPokerController
         if (!in_array($user, $voters)) {
             $voters[] = $user;
         }
-        $this->response->cards[] = new Header("Voters", implode(", ", $voters));
+        $votersCard = new Card();
+        $sectionVoters = new Section();
+        $sectionVoters->header = new Header("Voters", implode(", ", $voters));
+        $doneBtns = [];
+        $action = new Action("vote");
+        $parameterValue = new Parameter("voters", $voters);
+        $parameterId = new Parameter("id", $parameter['id']);
+        $action->addParemeter($parameterId);
+        $action->addParemeter($parameterValue);
+        $button = new TextButton("Done");
+        $button->onClick = $action;
+        $doneBtns[] = $button;
+        $sectionVoters->widgets[] = new Widget($doneBtns);
+        $votersCard->setSection($sectionVoters);
+        $this->response->cards[] = $votersCard;
         
         return ["actionResponse"=>$actionResponse, "cards"=> $this->response->cards];
     }
